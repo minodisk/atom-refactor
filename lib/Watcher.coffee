@@ -1,5 +1,4 @@
 { EventEmitter } = require 'events'
-Ripper = require './Ripper'
 ReferenceView = require './background/ReferenceView'
 ErrorView = require './background/ErrorView'
 GutterView = require './gutter/GutterView'
@@ -43,7 +42,7 @@ class Watcher extends EventEmitter
 
   activate: ->
     # Setup model
-    @ripper = new Ripper
+    @ripper = new @Ripper
 
     # Setup views
     @referenceView = new ReferenceView

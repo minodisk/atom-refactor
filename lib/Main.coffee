@@ -7,7 +7,7 @@ class Main
 
 
 
-  constructor: (@Watcher = require './Watcher') ->
+  constructor: ->
 
 
   ###
@@ -35,7 +35,7 @@ class Main
   ###
 
   onCreated: (editorView) =>
-    watcher = new @Watcher editorView
+    watcher = new @Watcher @Ripper, editorView
     watcher.on 'destroyed', @onDestroyed
     @watchers.push watcher
 
