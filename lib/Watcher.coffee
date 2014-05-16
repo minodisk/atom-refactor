@@ -8,7 +8,7 @@ StatusView = require './status/StatusView'
 module.exports =
 class Watcher extends EventEmitter
 
-  constructor: (@editorView) ->
+  constructor: (@Ripper, @editorView) ->
     super()
     @editor = @editorView.editor
     @editor.on 'grammar-changed', @checkGrammar

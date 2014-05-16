@@ -1,3 +1,5 @@
+Watcher = require './Watcher'
+
 module.exports =
 class Main
 
@@ -6,8 +8,7 @@ class Main
     highlightReference: true
 
 
-
-  constructor: ->
+  constructor: (@Ripper, @renameCommand, @refactorCommand) ->
 
 
   ###
@@ -35,7 +36,7 @@ class Main
   ###
 
   onCreated: (editorView) =>
-    watcher = new @Watcher @Ripper, editorView
+    watcher = new Watcher @Ripper, editorView
     watcher.on 'destroyed', @onDestroyed
     @watchers.push watcher
 
