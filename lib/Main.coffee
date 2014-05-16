@@ -1,11 +1,13 @@
-Watcher = require './Watcher'
-
 module.exports =
 class Main
 
   configDefaults:
     highlightError    : true
     highlightReference: true
+
+
+
+  constructor: (@Watcher = require './Watcher') ->
 
 
   ###
@@ -33,7 +35,7 @@ class Main
   ###
 
   onCreated: (editorView) =>
-    watcher = new Watcher editorView
+    watcher = new @Watcher editorView
     watcher.on 'destroyed', @onDestroyed
     @watchers.push watcher
 
