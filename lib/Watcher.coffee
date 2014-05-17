@@ -8,7 +8,10 @@ StatusView = require './status/StatusView'
 module.exports =
 class Watcher extends EventEmitter
 
-  constructor: (@Ripper, @editorView) ->
+  Ripper: null
+  scopeNames: []
+
+  constructor: (@editorView) ->
     super()
     @editor = @editorView.editor
     @editor.on 'grammar-changed', @checkGrammar
@@ -37,7 +40,7 @@ class Watcher extends EventEmitter
   checkGrammar: =>
     @deactivate()
     scopeName = @editor.getGrammar().scopeName
-    return unless scopeName is 'source.coffee' or scopeName is 'source.litcoffee'
+    return unless scopeName in @scopeNames
     @activate()
 
   activate: ->

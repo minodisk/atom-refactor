@@ -3,7 +3,7 @@ HighlightView = require './HighlightView'
 module.exports =
 class ErrorView extends HighlightView
 
-  @className: 'coffee-refactor-error'
+  @className: 'refactor-error'
   configProperty: 'coffee-refactor.highlightError'
 
   constructor: ->

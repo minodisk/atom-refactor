@@ -1,14 +1,13 @@
-Watcher = require './Watcher'
-
 module.exports =
 class Main
+
+  Watcher: null
+  renameCommand: ''
+  refactorCommand: ''
 
   configDefaults:
     highlightError    : true
     highlightReference: true
-
-
-  constructor: (@Ripper, @renameCommand, @refactorCommand) ->
 
 
   ###
@@ -18,12 +17,12 @@ class Main
   activate: (state) ->
     @watchers = []
     atom.workspaceView.eachEditorView @onCreated
-    atom.workspaceView.command 'coffee-refactor:rename', @onRename
-    atom.workspaceView.command 'coffee-refactor:done', @onDone
+    atom.workspaceView.command @renameCommand, @onRename
+    atom.workspaceView.command @refactorCommand, @onDone
 
   deactivate: ->
-    atom.workspaceView.off 'coffee-refactor:rename', @onRename
-    atom.workspaceView.off 'coffee-refactor:done', @onDone
+    atom.workspaceView.off @renameCommand, @onRename
+    atom.workspaceView.off @refactorCommand, @onDone
     for watcher in @watchers
       watcher.destruct()
     delete @watchers
@@ -36,7 +35,7 @@ class Main
   ###
 
   onCreated: (editorView) =>
-    watcher = new Watcher @Ripper, editorView
+    watcher = new @Watcher editorView
     watcher.on 'destroyed', @onDestroyed
     @watchers.push watcher
 
