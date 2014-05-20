@@ -1,7 +1,7 @@
 {
   "name": "atom-refactor",
   "main": "./lib/exports",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Base of refactor package for Atom",
   "repository": "https://github.com/minodisk/atom-refactor",
   "license": "MIT",
