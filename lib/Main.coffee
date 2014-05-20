@@ -54,6 +54,5 @@ class Main
     isExecuted = false
     for watcher in @watchers
       isExecuted or= watcher.done()
-    console.log isExecuted
     return if isExecuted
     e.abortKeyBinding()
