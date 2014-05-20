@@ -3,7 +3,7 @@ class Main
 
   Watcher: null
   renameCommand: ''
-  refactorCommand: ''
+  doneCommand: ''
 
   configDefaults:
     highlightError    : true
@@ -18,11 +18,11 @@ class Main
     @watchers = []
     atom.workspaceView.eachEditorView @onCreated
     atom.workspaceView.command @renameCommand, @onRename
-    atom.workspaceView.command @refactorCommand, @onDone
+    atom.workspaceView.command @doneCommand, @onDone
 
   deactivate: ->
     atom.workspaceView.off @renameCommand, @onRename
-    atom.workspaceView.off @refactorCommand, @onDone
+    atom.workspaceView.off @doneCommand, @onDone
     for watcher in @watchers
       watcher.destruct()
     delete @watchers
@@ -54,5 +54,6 @@ class Main
     isExecuted = false
     for watcher in @watchers
       isExecuted or= watcher.done()
+    console.log isExecuted
     return if isExecuted
     e.abortKeyBinding()
