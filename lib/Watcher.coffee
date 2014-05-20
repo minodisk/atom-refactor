@@ -45,7 +45,7 @@ class Watcher extends EventEmitter
 
   activate: ->
     # Setup model
-    @ripper = new @Ripper
+    @ripper = new @Ripper @editor
 
     # Setup views
     @referenceView = new ReferenceView
@@ -136,7 +136,6 @@ class Watcher extends EventEmitter
       range = cursor.getCurrentWordBufferRange includeNonWordCharacters: false
       unless range.isEmpty()
         ranges = @ripper.find range
-
     rowsList = for range in ranges
       @rangeToRows range
     @referenceView.update rowsList
