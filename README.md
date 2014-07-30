@@ -1,3 +1,3 @@
-# atom-refactor
+# **Obsolete**
 
-**Obsolete project**
+This project is no longer maintained.
